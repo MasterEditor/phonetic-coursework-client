@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Coursework_Client.XAML.Dictionaries"
+                    xmlns:converters="clr-namespace:Coursework_Client.XAML.Converters"
+                    xmlns:hc="https://handyorg.github.io/handycontrol">
+
+    <FontFamily x:Key="Roboto-Thin">pack://application:,,,/Resources/Fonts/#Roboto Thin</FontFamily>
+    <FontFamily x:Key="Roboto-Light">pack://application:,,,/Resources/Fonts/#Roboto Light</FontFamily>
+    <FontFamily x:Key="Roboto-Medium">pack://application:,,,/Resources/Fonts/#Roboto Medium</FontFamily>
+    <FontFamily x:Key="Roboto-Regular">pack://application:,,,/Resources/Fonts/#Roboto Regular</FontFamily>
+    <FontFamily x:Key="Roboto-Bold">pack://application:,,,/Resources/Fonts/#Roboto Bold</FontFamily>
+
+    <converters:ByteArrayToBitmapConverter x:Key="BytesToBitmap" />
+    <converters:BigStrToSmallStrConverter x:Key="BigStrToSmallStrConverter"/>
+    <converters:ServerIntToAppTextConverter x:Key="ServerIntToAppTextConverter"/>
+    <converters:SelectedTariffTypeToStringConverter x:Key="SelectedTariffTypeToStringConverter" />
+    <converters:OperationValueToColorConverter x:Key="OperationValueToColorConverter" />
+    <converters:ServerValuesToProgressValueConverter x:Key="ServerValuesToProgressValueConverter" />
+    <converters:ServiceCostToStringConverter x:Key="ServiceCostToStringConverter" />
+    <converters:ServerValuesToCircleProgressConverter x:Key="ServerValuesToCircleProgressConverter" />
+    <converters:TariffTypeToStringConverter x:Key="TariffTypeToStringConverter" />
+
+
+    <LinearGradientBrush x:Key="PinkToBlueGradient">
+        <GradientStop Color="#FF3CAC" Offset="0"/>
+        <GradientStop Color="#784BA0" Offset="0.5"/>
+        <GradientStop Color="#2B86C5" Offset="1"/>
+    </LinearGradientBrush>
+    
+    
+</ResourceDictionary>

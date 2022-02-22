@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{01C1F215-4515-41F6-9B78-0A8EAC28B24E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Coursework_Client</RootNamespace>
+    <AssemblyName>Coursework_Client</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HandyControl, Version=3.1.0.0, Culture=neutral, PublicKeyToken=45be8712787a1e5b, processorArchitecture=MSIL">
+      <HintPath>packages\HandyControls.3.3.4\lib\net472\HandyControl.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Enums\SearchType.cs" />
+    <Compile Include="EventArgs\InnerPageChangedEventArgs.cs" />
+    <Compile Include="EventArgs\IntEventArgs.cs" />
+    <Compile Include="EventArgs\MaskedPhoneNumberEventArgs.cs" />
+    <Compile Include="EventArgs\OnAddNewTariffEventArgs.cs" />
+    <Compile Include="Managers\AccountManager.cs" />
+    <Compile Include="Managers\PagesManager.cs" />
+    <Compile Include="Managers\TempStorageManager.cs" />
+    <Compile Include="Models\API\ApiClient.cs" />
+    <Compile Include="Models\API\ApiStrings.cs" />
+    <Compile Include="Models\API\HttpResult.cs" />
+    <Compile Include="Models\API\Receiving\ConfirmRegistrationResponseModel.cs" />
+    <Compile Include="Models\API\Receiving\ErrorResponseModel.cs" />
+    <Compile Include="Models\API\Receiving\GetAllImagesResponseModel.cs" />
+    <Compile Include="Models\API\Receiving\GetNewsResponseModel.cs" />
+    <Compile Include="Models\API\Receiving\LoginResponseModel.cs" />
+    <Compile Include="Models\API\Receiving\RegisterResponseModel.cs" />
+    <Compile Include="Models\API\Receiving\UserInfoResponseModel.cs" />
+    <Compile Include="Models\API\Sending\ConfirmPasswordRecoveryRequestModel.cs" />
+    <Compile Include="Models\API\Sending\ConfirmRegistrationRequestModel.cs" />
+    <Compile Include="Models\API\Sending\GetNewsRequestModel.cs" />
+    <Compile Include="Models\API\Sending\IsRegisteredReqestModel.cs" />
+    <Compile Include="Models\API\Sending\LoginRequestModel.cs" />
+    <Compile Include="Models\API\Sending\RecoverPasswordRequestModel.cs" />
+    <Compile Include="Models\API\Sending\RegisterRequestModel.cs" />
+    <Compile Include="Models\API\UsersApiClient.cs" />
+    <Compile Include="Models\Card.cs" />
+    <Compile Include="Models\Consumption.cs" />
+    <Compile Include="Models\ImageModel.cs" />
+    <Compile Include="Models\NewsArticle.cs" />
+    <Compile Include="Models\Operation.cs" />
+    <Compile Include="Models\Promotion.cs" />
+    <Compile Include="Models\Service.cs" />
+    <Compile Include="Models\Statistic.cs" />
+    <Compile Include="Models\Tariff.cs" />
+    <Compile Include="Models\UserBaseInfo.cs" />
+    <Compile Include="ViewModels\AdminViewModels\AdminPanelViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModels\ImagesAdminViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModels\NewsAdminViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModels\PromotionsAdminViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModels\ServicesAdminViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModels\TariffsAdminViewModel.cs" />
+    <Compile Include="ViewModels\AdminViewModels\UsersAdminViewModel.cs" />
+    <Compile Include="ViewModels\InnerViewModels\ArticlePageViewModel.cs" />
+    <Compile Include="ViewModels\InnerViewModels\NewsPageViewModel.cs" />
+    <Compile Include="ViewModels\InnerViewModels\NumberInfoViewModel.cs" />
+    <Compile Include="ViewModels\InnerViewModels\PromotionsViewModel.cs" />
+    <Compile Include="ViewModels\InnerViewModels\ServicesPageViewModel.cs" />
+    <Compile Include="ViewModels\InnerViewModels\SettingsPageViewModel.cs" />
+    <Compile Include="ViewModels\InnerViewModels\TariffsPageViewModel.cs" />
+    <Compile Include="ViewModels\MainContentViewModel.cs" />
+    <Compile Include="ViewModels\PasswordInputViewModel.cs" />
+    <Compile Include="ViewModels\PasswordRecoveryViewModel.cs" />
+    <Compile Include="ViewModels\PhoneInputViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PinConfirmationViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="XAML\Controls\AllServicesUserControl.xaml.cs">
+      <DependentUpon>AllServicesUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Controls\FlexList.xaml.cs">
+      <DependentUpon>FlexList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Controls\MyServicesUserControl.xaml.cs">
+      <DependentUpon>MyServicesUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Controls\Tariff.xaml.cs">
+      <DependentUpon>Tariff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Converters\BigStrToSmallStrConverter.cs" />
+    <Compile Include="XAML\Converters\ByteArrayToBitmapConverter.cs" />
+    <Compile Include="XAML\Converters\TariffTypeToStringConverter.cs" />
+    <Compile Include="XAML\Converters\OperationValueToColorConverter.cs" />
+    <Compile Include="XAML\Converters\SelectedTariffTypeToStringConverter.cs" />
+    <Compile Include="XAML\Converters\ServerIntToAppTextConverter.cs" />
+    <Compile Include="XAML\Converters\ServerValuesToCircleProgressConverter.cs" />
+    <Compile Include="XAML\Converters\ServerValuesToProgressValueConverter.cs" />
+    <Compile Include="XAML\Converters\ServiceCostToStringConverter.cs" />
+    <Compile Include="XAML\Views\AdminViews\AdminPanelPage.xaml.cs">
+      <DependentUpon>AdminPanelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\AdminViews\ImagesAdminPage.xaml.cs">
+      <DependentUpon>ImagesAdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\AdminViews\NewsAdminPage.xaml.cs">
+      <DependentUpon>NewsAdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\AdminViews\PromotionsAdminPage.xaml.cs">
+      <DependentUpon>PromotionsAdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\AdminViews\ServicesAdminPage.xaml.cs">
+      <DependentUpon>ServicesAdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\AdminViews\TariffsAdminPage.xaml.cs">
+      <DependentUpon>TariffsAdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\AdminViews\UsersAdminPage.xaml.cs">
+      <DependentUpon>UsersAdminPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\InnerViews\ArticlePage.xaml.cs">
+      <DependentUpon>ArticlePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\InnerViews\NewsPage.xaml.cs">
+      <DependentUpon>NewsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\InnerViews\NumberInfoPage.xaml.cs">
+      <DependentUpon>NumberInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\InnerViews\PromotionsPage.xaml.cs">
+      <DependentUpon>PromotionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\InnerViews\ServicesPage.xaml.cs">
+      <DependentUpon>ServicesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\InnerViews\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\InnerViews\TariffsPage.xaml.cs">
+      <DependentUpon>TariffsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\MainContentPage.xaml.cs">
+      <DependentUpon>MainContentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\PasswordInputPage.xaml.cs">
+      <DependentUpon>PasswordInputPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\PasswordRecoveryPage.xaml.cs">
+      <DependentUpon>PasswordRecoveryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\PhoneInputPage.xaml.cs">
+      <DependentUpon>PhoneInputPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\PinConfirmationPage.xaml.cs">
+      <DependentUpon>PinConfirmationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XAML\Views\RegisterPage.xaml.cs">
+      <DependentUpon>RegisterPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="XAML\Controls\AllServicesUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Controls\FlexList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Controls\MyServicesUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Controls\Tariff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Dictionaries\GlobalDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\AdminViews\AdminPanelPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\AdminViews\ImagesAdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\AdminViews\NewsAdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\AdminViews\PromotionsAdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\AdminViews\ServicesAdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\AdminViews\TariffsAdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\AdminViews\UsersAdminPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\InnerViews\ArticlePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\InnerViews\NewsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\InnerViews\NumberInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\InnerViews\PromotionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\InnerViews\ServicesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\InnerViews\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\InnerViews\TariffsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\MainContentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\PasswordInputPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\PasswordRecoveryPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\PhoneInputPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\PinConfirmationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="XAML\Views\RegisterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1 - Copy - Copy.cd" />
+    <None Include="ClassDiagram1 - Copy.cd" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Resources\Fonts\Roboto-Bold.ttf" />
+    <Resource Include="Resources\Fonts\Roboto-Light.ttf" />
+    <Resource Include="Resources\Fonts\Roboto-Medium.ttf" />
+    <Resource Include="Resources\Fonts\Roboto-Regular.ttf" />
+    <Resource Include="Resources\Fonts\Roboto-Thin.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\cross-small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\back_pattern_violet.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Logo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\TEST.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\smartphone-gradient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\settings-gradient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\flame-gradient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\list-gradient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\browser-gradient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\credit-card.png" />
+    <Resource Include="Resources\Images\Icons\telephone.png" />
+    <Resource Include="Resources\Images\Icons\world.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Shape 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ADS.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\shocked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\question.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ForSmartphone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ForCalls.png" />
+    <Resource Include="Resources\Images\ForInternet.png" />
+    <Resource Include="Resources\Images\ForSpecials.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\wallet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\services-gradient.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\back_pattern_mint.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Icons\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ad-1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\ad-2.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

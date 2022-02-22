@@ -1,0 +1,240 @@
+﻿<Page x:Class="Coursework_Client.XAML.Views.TariffsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Coursework_Client.XAML.Views"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      xmlns:controls="clr-namespace:Coursework_Client.XAML.Controls"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TariffsPage">
+    <hc:Interaction.Triggers>
+        <hc:EventTrigger EventName="Loaded">
+            <hc:EventToCommand Command="{Binding UpdateAllTariffsCommand}" />
+        </hc:EventTrigger>
+    </hc:Interaction.Triggers>
+
+    <Grid>
+        <ScrollViewer CanContentScroll="False" x:Name="TrafficViewer">
+            <StackPanel>
+                <TextBlock Text="Тарифы" HorizontalAlignment="Center" Margin="0 30 0 0" FontSize="28" FontFamily="{StaticResource Roboto-Regular}"
+                   Foreground="#454545"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0 10 0 0" FontSize="20" FontFamily="{StaticResource Roboto-Regular}"
+                   Foreground="#454545">
+            <Run Text="Текущий тариф:" />
+            <Run Text="{Binding MyTariff.Name}" Foreground="#87CBC5" TextDecorations="Underline" Cursor="Hand">
+                <hc:Interaction.Triggers>
+                    <hc:EventTrigger EventName="MouseLeftButtonDown">
+                        <hc:EventToCommand Command="{Binding GetTariffInfo}" PassEventArgsToCommand="True" CommandParameter="{Binding MyTariff}" />
+                    </hc:EventTrigger>
+                </hc:Interaction.Triggers>
+            </Run>
+                    </TextBlock>
+                    <hc:CircleProgressBar Margin="0 10 0 0" VerticalAlignment="Center" IsIndeterminate="true" ArcThickness="3" Foreground="#60bdab" Height="20" Width="20"
+                                          Visibility="{Binding MyTariffLoadingVisibility, Converter={StaticResource Boolean2VisibilityConverter}}"/>
+                </StackPanel>
+                <Grid Margin="0 40 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+
+
+                    <hc:SimplePanel Margin="20 0 10 0">
+                        <Border Background="White" Grid.Row="1" CornerRadius="5">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Black" Opacity="0.15" />
+                            </Border.Effect>
+                        </Border>
+                        <Border>
+                            <Grid Height="30">
+                                <Image Source="../../../Resources/Images/Icons/telephone.png" Height="22" Margin="10 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Roboto-Regular}" FontSize="14" Foreground="#454545" 
+                                           Visibility="{Binding MyTariffLoadingVisibility, Converter={StaticResource Boolean2VisibilityReConverter}}">
+                                    <Run Text="{Binding MyTariff.Minutes, Converter={StaticResource ServerIntToAppTextConverter}}" />
+                                    <Run Text="МИН" />
+                                </TextBlock>
+                                <hc:CircleProgressBar VerticalAlignment="Center" IsIndeterminate="true" ArcThickness="3" Foreground="#60bdab" Height="20" Width="20"
+                                          Visibility="{Binding MyTariffLoadingVisibility, Converter={StaticResource Boolean2VisibilityConverter}}"/>
+                            </Grid>
+                        </Border>
+                    </hc:SimplePanel>
+
+                    <hc:SimplePanel Grid.Column="1" Margin="20 0 20 0">
+                        <Border Background="White" Grid.Row="1" CornerRadius="5">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Black" Opacity="0.15" />
+                            </Border.Effect>
+                        </Border>
+                        <Border>
+                            <Grid Height="30">
+                                <Image Source="../../../Resources/Images/Icons/world.png" Height="22" Margin="10 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Roboto-Regular}" FontSize="14" Foreground="#454545"
+                                           Visibility="{Binding MyTariffLoadingVisibility, Converter={StaticResource Boolean2VisibilityReConverter}}">
+                                    <Run Text="{Binding MyTariff.Internet, Converter={StaticResource ServerIntToAppTextConverter}}" />
+                                    <Run Text="МБ" />
+                                </TextBlock>
+                                <hc:CircleProgressBar VerticalAlignment="Center" IsIndeterminate="true" ArcThickness="3" Foreground="#60bdab" Height="20" Width="20"
+                                          Visibility="{Binding MyTariffLoadingVisibility, Converter={StaticResource Boolean2VisibilityConverter}}"/>
+                            </Grid>
+                        </Border>
+                    </hc:SimplePanel>
+
+                    <hc:SimplePanel Grid.Column="2" Margin="10 0 20 0">
+                        <Border Background="White" Grid.Row="1" CornerRadius="5">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="10" ShadowDepth="0" Color="Black" Opacity="0.15" />
+                            </Border.Effect>
+                        </Border>
+                        <Border>
+                            <Grid Height="30">
+                                <Image Source="../../../Resources/Images/Icons/credit-card.png" Height="22" Margin="10 0 0 0" HorizontalAlignment="Left" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource Roboto-Regular}" FontSize="14" Foreground="#454545"
+                                           Visibility="{Binding MyTariffLoadingVisibility, Converter={StaticResource Boolean2VisibilityReConverter}}">
+                                    <Run Text="{Binding MyTariff.Price, Converter={StaticResource ServerIntToAppTextConverter}}" />
+                                    <Run Text="РУБ/МЕС" />
+                                </TextBlock>
+                                <hc:CircleProgressBar VerticalAlignment="Center" IsIndeterminate="true" ArcThickness="3" Foreground="#60bdab" Height="20" Width="20"
+                                          Visibility="{Binding MyTariffLoadingVisibility, Converter={StaticResource Boolean2VisibilityConverter}}"/>
+                            </Grid>
+                        </Border>
+                    </hc:SimplePanel>
+
+                </Grid>
+
+                <TextBlock Text="Для Смартфона" HorizontalAlignment="Center" Margin="0 70 0 0" FontSize="28" FontFamily="{StaticResource Roboto-Regular}"
+                   Foreground="#454545"/>
+
+                <hc:FlexPanel Margin="30" x:Name="SmartphoneTariffsPanel" AlignItems="FlexStart" AlignContent="SpaceBetween" JustifyContent="SpaceAround" FlexWrap="WrapReverse" FlexDirection="RowReverse"/>
+
+
+                <TextBlock Text="Для Интернета" HorizontalAlignment="Center" Margin="0 30 0 0" FontSize="28" FontFamily="{StaticResource Roboto-Regular}"
+                   Foreground="#454545"/>
+
+                <hc:FlexPanel Margin="30" x:Name="InternetTariffsPanel" AlignItems="FlexStart" AlignContent="SpaceBetween" JustifyContent="SpaceAround" FlexWrap="WrapReverse" FlexDirection="RowReverse"/>
+
+                <TextBlock Text="Для Звонков" HorizontalAlignment="Center" Margin="0 30 0 0" FontSize="28" FontFamily="{StaticResource Roboto-Regular}"
+                   Foreground="#454545"/>
+
+                <hc:FlexPanel Margin="30" x:Name="CallsTariffsPanel" AlignItems="FlexStart" AlignContent="SpaceBetween" JustifyContent="SpaceAround" FlexWrap="WrapReverse" FlexDirection="RowReverse"/>
+
+                <TextBlock Text="Специальные" HorizontalAlignment="Center" Margin="0 30 0 0" FontSize="28" FontFamily="{StaticResource Roboto-Regular}"
+                   Foreground="#454545"/>
+
+                <hc:FlexPanel Margin="30" x:Name="SpecialTariffsPanel" AlignItems="FlexStart" AlignContent="SpaceBetween" JustifyContent="SpaceAround" FlexWrap="WrapReverse" FlexDirection="RowReverse"/>
+
+                <controls:FlexList ItemsSource="{Binding Tariffs}"/>
+                <Image VerticalAlignment="Bottom" Source="../../../Resources/Images/ad-2.png" Grid.RowSpan="2" Height="100" Margin="0 0 0 20" HorizontalAlignment="Center" Opacity="0.9"/>
+            </StackPanel>
+            
+        </ScrollViewer>
+        
+        
+        <hc:GotoTop Animated="True" AutoHiding="True" AnimationTime="500" Target="{Binding ElementName=TrafficViewer}" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20" Foreground="Red"/>
+
+        <hc:SimplePanel Visibility="{Binding InfoVisibility, Converter={StaticResource Boolean2VisibilityConverter}}">
+            <hc:SimplePanel.Background>
+                <SolidColorBrush Color="Black" Opacity="0.2" />
+            </hc:SimplePanel.Background>
+            <Border Width="500" Height="350" Background="White" CornerRadius="10" Padding="20">
+                <StackPanel>
+                    <TextBlock Text="{Binding SelectedTariff.Name}" HorizontalAlignment="Center" Foreground="#414141"
+                               FontSize="24" FontFamily="{StaticResource Roboto-Regular}" />
+                    <StackPanel Orientation="Horizontal" Margin="20" >
+                        <StackPanel Orientation="Vertical" >
+                            <hc:CircleProgressBar Margin="0 10 0 10" ArcThickness="4" Width="100" Height="100" Value="100"
+                                          FontSize="24" Text="{Binding SelectedTariff.Minutes, Converter={StaticResource ServerIntToAppTextConverter}}" FontFamily="{StaticResource Roboto-Medium}"
+                                              Foreground="#60bdab"/>
+                            <Label Content="МИНУТЫ" HorizontalAlignment="Center" FontFamily="{StaticResource Roboto-Medium}"
+                                       Foreground="#646464" FontSize="16" Background="#f5f5f5" hc:BorderElement.CornerRadius="10" BorderThickness="0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="60 0 0 0" >
+                            <hc:CircleProgressBar Margin="0 10 0 10" ArcThickness="4" Width="100" Height="100" Value="100"
+                                          FontSize="24" Text="{Binding SelectedTariff.Internet, Converter={StaticResource ServerIntToAppTextConverter}}" FontFamily="{StaticResource Roboto-Medium}"
+                                              Foreground="#60bdab"/>
+                            <Label Content="ИНТЕРНЕТ" HorizontalAlignment="Center" FontFamily="{StaticResource Roboto-Medium}"
+                                       Foreground="#646464" FontSize="16" Background="#f5f5f5" hc:BorderElement.CornerRadius="10" BorderThickness="0" />
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Margin="55 0 0 0">
+                            <hc:CircleProgressBar Margin="0 10 0 10" ArcThickness="4" Width="100" Height="100" Value="100"
+                                          FontSize="24" Text="{Binding SelectedTariff.SMS, Converter={StaticResource ServerIntToAppTextConverter}}" FontFamily="{StaticResource Roboto-Medium}"
+                                              Foreground="#60bdab"/>
+                            <Label Content="SMS" HorizontalAlignment="Center" FontFamily="{StaticResource Roboto-Medium}"
+                                       Foreground="#646464" FontSize="16" Background="#f5f5f5" hc:BorderElement.CornerRadius="10" BorderThickness="0" />
+                        </StackPanel>
+                        
+                    </StackPanel>
+                    <Border Style="{StaticResource BorderRegion}" BorderBrush="#60bdab">
+                        <TextBlock Text="{Binding SelectedTariff.Type, Converter={StaticResource SelectedTariffTypeToStringConverter}}" TextAlignment="Center"
+                                   FontFamily="{StaticResource Roboto-Regular}" FontSize="13"/>
+                    </Border>
+                    <Button Margin="0 15 0 0" Content="Закрыть" FontSize="14" Height="35" FontFamily="{StaticResource Roboto-Regular}" Command="{Binding CloseInfoDialogCommand}"/>
+
+                </StackPanel>
+
+            </Border>
+        </hc:SimplePanel>
+
+        <hc:SimplePanel Visibility="{Binding ChangeTariffDialogVisibility, Converter={StaticResource Boolean2VisibilityConverter}}">
+            <hc:SimplePanel.Background>
+                <SolidColorBrush Color="Black" Opacity="0.2" />
+            </hc:SimplePanel.Background>
+            <Border Width="500" Height="250" Background="White" CornerRadius="10" Padding="20">
+                <StackPanel>
+                    <TextBlock Text="Смена тарифа" HorizontalAlignment="Center" Foreground="#414141"
+                               FontSize="24" FontFamily="{StaticResource Roboto-Regular}" />
+
+                    <StackPanel Orientation="Horizontal" Margin="0 40 0 40" >
+                        <Image Source="../../../Resources/Images/question.png" Height="50"  RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Center"/>
+                        <ScrollViewer VerticalAlignment="Center">
+                            <TextBlock Margin="20 0 0 0" FontSize="20" TextWrapping="Wrap" HorizontalAlignment="Center" Foreground="#454545" VerticalAlignment="Center"
+                                       Width="380">
+                        <Run Text="Вы уверены, что желаете сменить тариф"/>
+                        <Run Text="{Binding MyTariff.Name}" Foreground="#87CBC5" />
+                        <Run Text="на" />
+                        <Run Text="{Binding SelectedTariff.Name}" Foreground="#87CBC5" />
+                        <Run Text="?" />
+                            </TextBlock>
+                        </ScrollViewer>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Назад" Margin="0 0 20 0" FontSize="14" Height="35" FontFamily="{StaticResource Roboto-Regular}" Command="{Binding CloseChangeTariffDialogCommand}"/>
+                        <Button Content="Подтвердить" Style="{StaticResource ButtonPrimary}" FontSize="14" Height="35" FontFamily="{StaticResource Roboto-Regular}" Command="{Binding ConfirmTariffChangingCommand}"/>
+                    </StackPanel>
+                    
+
+                </StackPanel>
+
+            </Border>
+        </hc:SimplePanel>
+
+        <hc:SimplePanel Grid.RowSpan="2" Visibility="{Binding ErrorVisibility, Converter={StaticResource Boolean2VisibilityConverter}}">
+            <hc:SimplePanel.Background>
+                <SolidColorBrush Color="Black" Opacity="0.2" />
+            </hc:SimplePanel.Background>
+            <Border Width="500" Height="240" Background="White" CornerRadius="10" Padding="20">
+                <StackPanel>
+                    <TextBlock Text="Ошибка" HorizontalAlignment="Center" Foreground="#414141"
+                               FontSize="24" FontFamily="{StaticResource Roboto-Regular}" />
+                    <StackPanel Orientation="Horizontal" Margin="20" Height="80">
+                        <Image Source="../../../Resources/Images/cancel.png" Height="50"  RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Center"/>
+                        <ScrollViewer>
+                            <TextBlock Text="{Binding ErrorMessage}" TextWrapping="Wrap" Width="400" FontFamily="{StaticResource Roboto-Regular}"
+                                       FontSize="14" Margin="20 0 0 0"  VerticalAlignment="Center"/>
+                        </ScrollViewer>
+                    </StackPanel>
+                    <Button Content="Закрыть" FontSize="14" Height="35" FontFamily="{StaticResource Roboto-Regular}" Command="{Binding CloseErrorDialogCommand}"/>
+
+                </StackPanel>
+
+            </Border>
+        </hc:SimplePanel>
+        
+    </Grid>
+    
+</Page>

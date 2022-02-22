@@ -1,0 +1,143 @@
+﻿<Page x:Class="Coursework_Client.XAML.Views.PromotionsAdminPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Coursework_Client.XAML.Views"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ImagesAdminPage">
+    <hc:Interaction.Triggers>
+        <hc:EventTrigger EventName="Loaded">
+            <hc:EventToCommand Command="{Binding LoadImagesCommand}" />
+        </hc:EventTrigger>
+    </hc:Interaction.Triggers>
+
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition />
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Изображения" FontSize="24" FontFamily="{StaticResource Roboto-Regular}" HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+
+            <DataGrid BorderThickness="0"  ItemsSource="{Binding Images}" HorizontalAlignment="Center" Padding="0" Background="Transparent"
+                  AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" ScrollViewer.CanContentScroll="False"
+                      Grid.Row="1" Margin="0 0 0 10">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource BorderRegion}" Width="700" Height="250" Margin="0" Effect="{StaticResource EffectShadow1}" >
+                                    <Border CornerRadius="5">
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="{Binding Image}" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                        </Border.Background>
+                                        <Border Height="40" VerticalAlignment="Bottom">
+                                            <Border.Background>
+                                                <SolidColorBrush Color="White" Opacity="0.8" />
+                                            </Border.Background>
+                                            <hc:SimpleStackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Border>
+                                                    <TextBlock Text="{Binding ImagePath}" VerticalAlignment="Center" Margin="0 0 20 0" />
+                                                </Border>
+                                                <Button hc:IconElement.Geometry="{StaticResource CloseGeometry}" Content="Удалить" Command="{Binding DataContext.RemoveImageCommand, RelativeSource={RelativeSource AncestorType=Page} }" CommandParameter="{Binding Id}"/>
+                                            </hc:SimpleStackPanel>
+                                        </Border>
+                                    </Border>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                </DataGrid.CellStyle>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Margin" Value="0 0 0 40" />
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                </DataGrid.RowStyle>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+                <Button Content="Добавить" Command="{Binding UploadImageCommand}" Style="{StaticResource ButtonPrimary}" Height="40" Width="200"/>
+            </StackPanel>
+        </Grid>
+
+        <hc:SimplePanel Grid.RowSpan="2" Visibility="{Binding ImageListVisibility, Converter={StaticResource Boolean2VisibilityConverter}}">
+            <hc:SimplePanel.Background>
+                <SolidColorBrush Color="Black" Opacity="0.2" />
+            </hc:SimplePanel.Background>
+            <hc:ScrollViewer>
+                <Border Background="White" CornerRadius="10" Padding="20"  Width="350" HorizontalAlignment="Center" Height="500">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="*"  />
+                            <RowDefinition Height="50" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Добавить изображение" HorizontalAlignment="Center" FontFamily="{StaticResource Roboto-Regular}" FontSize="13" Foreground="#414141"/>
+                        <DataGrid BorderThickness="0"  ItemsSource="{Binding LocalImages}" HorizontalAlignment="Center" Padding="0" Background="Transparent"
+                  AutoGenerateColumns="False" CanUserAddRows="False" SelectionMode="Single" ScrollViewer.CanContentScroll="False"
+                      Grid.Row="1" Margin="0 0 0 10" >
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Border Style="{StaticResource BorderRegion}" Width="220" Height="220" Margin="0" Effect="{StaticResource EffectShadow1}"
+                                                    HorizontalAlignment="Center">
+                                                <Border CornerRadius="5">
+                                                    <Border.Background>
+                                                        <ImageBrush ImageSource="{Binding Bytes}" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                                    </Border.Background>
+                                                    <Button hc:IconElement.Geometry="{StaticResource AddGeometry}" Content="Добавить" Command="{Binding DataContext.ConfirmAddingImageCommand, RelativeSource={RelativeSource AncestorType=Page} }" CommandParameter="{Binding Path}"
+                                                            VerticalAlignment="Bottom" Margin="0 0 0 10" Style="{StaticResource ButtonSuccess}"/>
+                                                </Border>
+                                            </Border>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="Padding" Value="0" />
+                                    <Setter Property="BorderThickness" Value="0" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Style>
+                            </DataGrid.CellStyle>
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Setter Property="Margin" Value="0 0 0 40" />
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Style>
+                            </DataGrid.RowStyle>
+                        </DataGrid>
+                        <Button Content="Закрыть" Style="{StaticResource ButtonDanger}" hc:IconElement.Geometry="{StaticResource CloseGeometry}" hc:IconElement.Height="10" Command="{Binding CloseImageDialogCommand}"
+                                Grid.Row="3"/>
+                    </Grid>
+
+
+                </Border>
+            </hc:ScrollViewer>
+        </hc:SimplePanel>
+
+        <hc:SimplePanel Grid.Row="1" Grid.RowSpan="3" Visibility="{Binding LoadingVisibility, Converter={StaticResource Boolean2VisibilityConverter}}">
+            <Border Width="130" Height="130" CornerRadius="20" Background="White">
+                <hc:CircleProgressBar IsIndeterminate="true" ArcThickness="5" Foreground="#60bdab"/>
+            </Border>
+        </hc:SimplePanel>
+
+    </Grid>
+
+</Page>

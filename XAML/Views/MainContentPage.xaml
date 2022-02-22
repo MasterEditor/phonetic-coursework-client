@@ -1,0 +1,114 @@
+﻿<Page x:Class="Coursework_Client.XAML.Views.MainContentPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Coursework_Client.XAML.Views"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      mc:Ignorable="d" Margin="0"
+      Title="MainContentPage">
+
+    <hc:TransitioningContentControl TransitionMode="Left2RightWithFade">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*" MaxWidth="230" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!-- LEFT BAR -->
+
+            <!--<Rectangle Fill="#cef8f0" Opacity="0.3"/>-->
+            
+
+            <!--<Rectangle Fill="White" Opacity="0.4"/>-->
+
+            <Border BorderThickness="0 0 1 0" BorderBrush="#e9e9e9">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="13" Opacity="0.8" ShadowDepth="0"/>
+                </Border.Effect>
+            </Border>
+
+            <StackPanel Orientation="Vertical" >
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="../../Resources/Images/back_pattern_mint.jpg" TileMode="FlipY" Stretch="Uniform" AlignmentY="Top" Viewport="0,0,500,500" ViewportUnits="Absolute"/>
+                </StackPanel.Background>
+                <Image Source="../../Resources/Images/Logo2.png" Height="70" RenderOptions.BitmapScalingMode="HighQuality"
+                       Margin="0 30 0 40" VerticalAlignment="Bottom"/>
+
+                <hc:SideMenu Margin="0 0 0 0" FontFamily="{StaticResource Roboto-Regular}"
+                             SideBrush="#75cbbb"  BorderThickness="0 2 0 2">
+                    <hc:SideMenu.BorderBrush>
+                        <SolidColorBrush Color="#75cbbb" Opacity="0.3"/>
+                    </hc:SideMenu.BorderBrush>
+                    <hc:SideMenu.Background>
+                        <SolidColorBrush Color="White" Opacity="0.5"/>
+                    </hc:SideMenu.Background>
+                    
+                    <hc:SideMenuItem Header="Мой Номер" IsSelected="True" Background="Transparent"
+                                     hc:MenuAttach.IsEnabledAnimation="True"
+                                     Command="{Binding SelectInnerPageCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+                        <hc:SideMenuItem.Icon>
+                            <Image Source="../../Resources/Images/Icons/smartphone-gradient.png"
+                                   Height="20" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </hc:SideMenuItem.Icon>
+                    </hc:SideMenuItem>
+
+                    <hc:SideMenuItem Header="Новости" Command="{Binding SelectInnerPageCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}"
+                                     Background="Transparent">
+                        <hc:SideMenuItem.Icon>
+                            <Image Source="../../Resources/Images/Icons/browser-gradient.png"
+                                   Height="17" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </hc:SideMenuItem.Icon>
+                    </hc:SideMenuItem>
+
+                    <hc:SideMenuItem Header="Тарифы" Command="{Binding SelectInnerPageCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}"
+                                     Background="Transparent">
+                        <hc:SideMenuItem.Icon>
+                            <Image Source="../../Resources/Images/Icons/services-gradient.png"
+                                   Height="20" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </hc:SideMenuItem.Icon>
+                    </hc:SideMenuItem>
+
+                    <hc:SideMenuItem Header="Услуги" Command="{Binding SelectInnerPageCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}"
+                                     Background="Transparent">
+                        <hc:SideMenuItem.Icon>
+                            <Image Source="../../Resources/Images/Icons/list-gradient.png"
+                                   Height="15" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </hc:SideMenuItem.Icon>
+                    </hc:SideMenuItem>
+
+                    <hc:SideMenuItem Header="Акции"  Command="{Binding SelectInnerPageCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}"
+                                     Background="Transparent">
+                        <hc:SideMenuItem.Icon>
+                            <Image Source="../../Resources/Images/Icons/flame-gradient.png"
+                                   Height="20" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </hc:SideMenuItem.Icon>
+                    </hc:SideMenuItem>
+
+                    <hc:SideMenuItem Header="Настройки" Background="Transparent" Command="{Binding SelectInnerPageCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}">
+                        <hc:SideMenuItem.Icon>
+                            <Image Source="../../Resources/Images/Icons/settings-gradient.png"
+                                   Height="20" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </hc:SideMenuItem.Icon>
+                    </hc:SideMenuItem>
+
+                    <hc:SideMenuItem Header="Панель Администратора" Background="Transparent" Command="{Binding SelectInnerPageCommand}" CommandParameter="{Binding Header,RelativeSource={RelativeSource Self}}"
+                                     Visibility="{Binding IsAdmin, Converter={StaticResource Boolean2VisibilityConverter}}">
+                        <hc:SideMenuItem.Icon>
+                            <Image Source="../../Resources/Images/Icons/settings-gradient.png"
+                                   Height="20" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </hc:SideMenuItem.Icon>
+                    </hc:SideMenuItem>
+
+                </hc:SideMenu>
+
+
+            </StackPanel>
+
+            <!--<Image Source="../../Resources/Images/ADS.jpg" Height="150"  Stretch="Fill"  RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" Grid.Column="0"/>-->
+
+            <Frame Grid.Column="1" x:Name="InnerFrameView" BorderThickness="0" NavigationUIVisibility="Hidden" />
+
+        </Grid>
+    </hc:TransitioningContentControl>
+</Page>
